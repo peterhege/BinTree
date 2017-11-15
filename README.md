@@ -1,4 +1,4 @@
-<img src="logo.png" alt="BinTree" style="width: 100px;"/>
+
 
 ## Build this project
 
