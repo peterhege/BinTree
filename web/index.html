@@ -131,10 +131,10 @@ and open the template in the editor.
         
         <script>
             $.ajax({url: "sesscount.jsp", success: function(result){
-                if( result > 999 )
-                    $("#sessCount").html("999+");
-                else
-                    $("#sessCount").html(result);
+                    if( result > 999 )
+                        $("#sessCount").html("999+");
+                    else
+                        $("#sessCount").html(result);
             }});
             
             $('#myForm input').on('change', function() {
@@ -161,11 +161,18 @@ and open the template in the editor.
                             $("#div1").html(result);
                         }
                     });
+                    
+                    $.ajax({url: "sesscount.jsp", success: function(result){
+                        if( result > 999 )
+                            $("#sessCount").html("999+");
+                        else
+                            $("#sessCount").html(result);
+                    }});
+                    
                     e.preventDefault();
                 });
                 
                 $("#myForm2").submit(function(e){
-                    var formData = new FormData($("#myForm2")[0]);
                     $.ajax({
                         url: "hello?binary=" + $("#binary").val(),
                         type: "GET",
@@ -173,6 +180,14 @@ and open the template in the editor.
                             $("#div1").html(result);
                         }
                     });
+                    
+                    $.ajax({url: "sesscount.jsp", success: function(result){
+                        if( result > 999 )
+                            $("#sessCount").html("999+");
+                        else
+                            $("#sessCount").html(result);
+                    }});
+        
                     e.preventDefault();
                 });
         </script>
