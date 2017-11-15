@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+        <title>BinTree</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="src/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+            .tree{
+                padding: 50px 0;
+            }
+            
+            .tree h5{
+                text-align: center !important;
+                background-repeat:no-repeat !important;
+                background-position:center center !important;
+                background-size:100% 100%, auto !important;
+                padding:20px 0 0 !important;
+                margin:0 !important;
+            }
+            
+            .tree h5 > span {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                color: white;
+                background-color: #007bff;
+                line-height: 30px;
+                text-align: center;
+            }
+            
+            .tree h5.leftChild{
+                background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 1 L99 0 L49 49 L50 50' fill='black' /></svg>");
+            }
+            
+            .tree h5.rightChild{
+                background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L49 50 L50 49' fill='black' /></svg>");
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container col-sm-6" style="text-align:center;">
+                <p></p>
+                <img style="width:100px" src="src/img/justmanlogo.png" />
+                <h1>BinTree</h1>
+                <form action="" id="myForm1" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="file">File input</label>
+                        <input type="file" class="form-control-file" id="file" aria-describedby="fileHelp" name="myFile">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                </form>
+                <p></p>
+                <form action="" id="myForm2" method="get">
+                    <div class="form-group">
+                        <label for="binary">Binary code</label>
+                        <input type="text" class="form-control" name="binary" id="binary" placeholder="Enter binary">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+        
+                <div id="div1">
+                    
+                </div>
+        </div>
+        
+        <script>
+                $("#myForm1").submit(function(e){
+                    var formData = new FormData($("#myForm1")[0]);
+                    $.ajax({
+                        url: "hello",
+                        type: "POST",
+                        data : formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(result){
+                            $("#div1").html(result);
+                        }
+                    });
+                    e.preventDefault();
+                });
+                
+                $("#myForm2").submit(function(e){
+                    var formData = new FormData($("#myForm2")[0]);
+                    $.ajax({
+                        url: "hello?binary=" + $("#binary").val(),
+                        type: "GET",
+                        success: function(result){
+                            $("#div1").html(result);
+                        }
+                    });
+                    e.preventDefault();
+                });
+        </script>
+    </body>
+</html>
