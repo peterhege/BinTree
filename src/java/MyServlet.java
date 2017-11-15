@@ -55,9 +55,28 @@ public class MyServlet extends HttpServlet {
                 int cc;
                 char c;
 
+                boolean kommentben = false;
+                
                 while((cc = contentStream.read()) != -1){
 
                     c = (char)cc;
+                    
+                    if (c == 0x3e){			// > karakter
+                        kommentben = true;
+                        continue;
+                    }
+
+                    if (c == 0x0a){			// újsor
+                        kommentben = false;
+                        continue;
+                    }
+
+                    if (kommentben)
+                        continue;
+
+                    if (c == 0x4e)		// N betű
+                        continue;
+                    
                     for(int j = 0; j < 8; ++j){
 
                         if((c & 0x80) == 0x80)
