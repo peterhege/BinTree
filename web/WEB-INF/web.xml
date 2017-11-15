@@ -14,9 +14,17 @@
         <servlet-name>new</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+    
+    <display-name>Servlet Examples</display-name>
+
+    <listener>
+        <listener-class>
+            org.kodejava.example.servlet.SessionCounter
+        </listener-class>
+    </listener>
     <session-config>
         <session-timeout>
-            30
+            1
         </session-timeout>
     </session-config>
 </web-app>
