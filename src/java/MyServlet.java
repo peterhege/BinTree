@@ -38,20 +38,23 @@ public class MyServlet extends HttpServlet {
     
     private void drawTree(PrintWriter out, BinTree tree){
         int width = 20 * (int) Math.pow(2, tree.getMelyseg());
-        out.write("<h2>The Tree</h2>");
-        out.write("<div style=\"overflow:auto\">");
+        out.write("<h2>The Graph</h2>");
+        out.write("<div id=\"tree\">");
         out.write("<div class=\"tree\" style=\"min-width:" + width + "px;\">");
         tree.writeOut(tree.getRoot(), out, "");
         out.write("</div>");
         out.write("</div>");
         
-        out.println("<p>");
-        out.println("Mélység: "+tree.getMelyseg());
-        out.println("<br>Átlag: " + tree.getAtlag());
-        out.println("<br>Szórás: " + tree.getSzoras());
-        out.println("<br>Kliensek: " + kliensek);
-        out.println("<br>DoGet: " + getek + "<br>DoPost: " + postok);
-        out.println("</p>");
+        out.println("<div class=\"container\">\n" +
+"  <h2>Details</h2>\n" +
+"  <ul class=\"list-group\" style=\"color:#444;text-align:left;\">");
+        out.println("<li class=\"list-group-item\">Mélység: "+tree.getMelyseg() + "</li>");
+        out.println("<li class=\"list-group-item\">Átlag: " + tree.getAtlag() + "</li>");
+        out.println("<li class=\"list-group-item\">Szórás: " + tree.getSzoras() + "</li>");
+        out.println("<li class=\"list-group-item\">Kliensek: " + kliensek + "</li>");
+        out.println("<li class=\"list-group-item\">DoGet: " + getek + ", DoPost: " + postok + "</li>");
+        out.println("</ul>\n" +
+"</div>");
     }
     
     private void getPNG(BinTree tree, PrintWriter out) throws IOException {
