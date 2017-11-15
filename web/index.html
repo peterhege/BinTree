@@ -48,7 +48,6 @@ and open the template in the editor.
             .tree h5.rightChild{
                 background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L49 50 L50 49' fill='black' /></svg>");
             }
-
         </style>
     </head>
     <body>
@@ -90,13 +89,15 @@ and open the template in the editor.
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-        
-                <div id="div1">
+        <div id="div1" style="text-align: center;">
                     
-                </div>
+        </div>
+        
+                
         </div>
         
         <script>
+            
             $('#myForm input').on('change', function() {
                 var selectedForm = $('input[name=radioName]:checked', '#myForm').val();
                 if(selectedForm == '1'){

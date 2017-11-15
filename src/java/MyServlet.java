@@ -34,7 +34,54 @@ public class MyServlet extends HttpServlet {
         kliensek = 0;
         getek = 0;
         postok = 0;
-    }   
+    }
+    
+    private void drawTree(PrintWriter out, BinTree tree){
+        int width = 20 * (int) Math.pow(2, tree.getMelyseg());
+        out.write("<h2>The Tree</h2>");
+        out.write("<div style=\"overflow:auto\">");
+        out.write("<div class=\"tree\" style=\"min-width:" + width + "px;\">");
+        tree.writeOut(tree.getRoot(), out, "");
+        out.write("</div>");
+        out.write("</div>");
+        
+        out.println("<p>");
+        out.println("Mélység: "+tree.getMelyseg());
+        out.println("<br>Átlag: " + tree.getAtlag());
+        out.println("<br>Szórás: " + tree.getSzoras());
+        out.println("<br>Kliensek: " + kliensek);
+        out.println("<br>DoGet: " + getek + "<br>DoPost: " + postok);
+        out.println("</p>");
+    }
+    
+    private void getPNG(BinTree tree, PrintWriter out) throws IOException {
+        BufferedImage img = new BufferedImage(400,400,BufferedImage.TYPE_INT_ARGB);
+            String szoveg1 = "Szoras: " + tree.getSzoras();
+            String szoveg2 = "Atlag: " + tree.getAtlag();
+            String szoveg3 = "Melyseg: " + tree.getMelyseg();
+            String szoveg4 = "Kliensek: " + kliensek;
+            String szoveg5 = "DoGet: " + getek + "      DoPost: " + postok;
+            
+            Graphics2D g2d = img.createGraphics();
+            g2d.setPaint(Color.blue);
+            int fontSize = 20;
+            g2d.setFont(new Font("Arial", Font.BOLD,fontSize));
+            FontMetrics fm = g2d.getFontMetrics();
+            int x = img.getWidth() - fm.stringWidth("a") -5;
+            int y = img.getHeight();
+            
+            g2d.drawString(szoveg1,fontSize,y - 300);
+            g2d.drawString(szoveg2,fontSize,y - 250);
+            g2d.drawString(szoveg3,fontSize,y - 200);
+            g2d.drawString(szoveg4,fontSize,y - 150);
+            g2d.drawString(szoveg5,fontSize,y - 100);
+            g2d.dispose();
+            String path = getServletContext().getRealPath("/")+"/";
+            String filename = "src/img/" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HH_mm_ss")) + ".png";
+            ImageIO.write(img,"png", new File(path + filename));
+            
+            out.write("<img src=\"" + filename + "\">");
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,6 +89,7 @@ public class MyServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //response.setContentType("image/png");
         try (PrintWriter out = response.getWriter()) {
+            kliensek++;
             
             BinTree tree = new BinTree();
             
@@ -96,41 +144,10 @@ public class MyServlet extends HttpServlet {
                 }
             }
             
-            BufferedImage img = new BufferedImage(400,400,BufferedImage.TYPE_INT_ARGB);
-            String szoveg1 = "Szoras: " + tree.getSzoras();
-            String szoveg2 = "Atlag: " + tree.getAtlag();
-            String szoveg3 = "Melyseg: " + tree.getMelyseg();
-            String szoveg4 = "Kliensek: " + kliensek;
-            String szoveg5 = "DoGet: " + getek + "      DoPost: " + postok;
+            drawTree(out, tree);
             
-            Graphics2D g2d = img.createGraphics();
-            g2d.setPaint(Color.blue);
-            int fontSize = 20;
-            g2d.setFont(new Font("Arial", Font.BOLD,fontSize));
-            FontMetrics fm = g2d.getFontMetrics();
-            int x = img.getWidth() - fm.stringWidth("a") -5;
-            int y = img.getHeight();
+            //getPNG(tree, out);
             
-            g2d.drawString(szoveg1,fontSize,y - 300);
-            g2d.drawString(szoveg2,fontSize,y - 250);
-            g2d.drawString(szoveg3,fontSize,y - 200);
-            g2d.drawString(szoveg4,fontSize,y - 150);
-            g2d.drawString(szoveg5,fontSize,y - 100);
-            g2d.dispose();
-            String path = getServletContext().getRealPath("/")+"/";
-            String filename = "src/img/" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HH_mm_ss")) + ".png";
-            ImageIO.write(img,"png", new File(path + filename));
-            
-            
-            out.write("<div class=\"tree\">");
-            out.write("<h2>The Tree</h2>");
-            tree.writeOut(tree.getRoot(), out, "");
-            /*out.println("<br>Mélység: "+tree.getMelyseg());
-            out.println("<br>Átlag: " + tree.getAtlag());
-            out.println("<br>Szórás: " + tree.getSzoras());*/
-            out.write("</div>");
-            
-            out.write("<img src=\"" + filename + "\">");
             out.close();
         }
     }

@@ -14,11 +14,13 @@ And search the downloaded directory
 ### 4. Run the project
 - At the menu: Run > Run Project or <kbd>F6</kbd>
 - The project automatically open in your default browser.
-> But also go to the menu: Windows > Output or <kbd>CTRL</kbd>+<kbd>4</kbd>
+> But also go to the menu: Windows > Output or <kbd>CTRL</kbd>+<kbd>4</kbd>.
+
 > binfa(run) page and copy this line in your browser: `Browsing:`
 
 ## Useage
-### Upload a .txt file, for example:
+### Upload a .txt file
+For example:
 ```
 > This is comment
 01111001001001000111
