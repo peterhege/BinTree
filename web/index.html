@@ -10,6 +10,7 @@ and open the template in the editor.
 
         <title>BinTree</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="src/img/favicon.ico" type="image/ico"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="src/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -42,11 +43,16 @@ and open the template in the editor.
             }
             
             .tree h5.leftChild{
-                background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 1 L99 0 L49 49 L50 50' fill='black' /></svg>");
+                background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 1 L99 0 L49 49 L50 50' fill='white' /></svg>");
             }
             
             .tree h5.rightChild{
-                background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L49 50 L50 49' fill='black' /></svg>");
+                background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L49 50 L50 49' fill='white' /></svg>");
+            }
+            
+            body{
+                background: #444;
+                color: #fff;
             }
         </style>
     </head>
@@ -55,25 +61,24 @@ and open the template in the editor.
                 <p></p>
                 
                 <h1 style="text-align:center;">
-                    <img style="width:100px" src="src/img/justmanlogo.png" /><br>
-                    BinTree
+                    <img style="" class="col-sm-5" src="src/img/logo.png" />
                 </h1>
                 <form id="myForm">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="radioName" id="exampleRadios1" value="1" checked>
-                            Upload a file
+                            <input class="form-check-input" type="radio" name="radioName" id="exampleRadios2" value="2" checked>
+                            Write a bitstream
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="radioName" id="exampleRadios2" value="2">
-                            Write a bitstream
+                            <input class="form-check-input" type="radio" name="radioName" id="exampleRadios1" value="1">
+                            Upload a file
                         </label>
                     </div>
                 </form>
                 
-                <form action="" id="myForm1" method="post" enctype="multipart/form-data">
+                <form action="" id="myForm1" method="post" enctype="multipart/form-data" style="display:none;">
                     <div class="form-group">
                         <label for="file">File input</label>
                         <input type="file" class="form-control-file" id="file" aria-describedby="fileHelp" name="myFile">
@@ -82,7 +87,7 @@ and open the template in the editor.
                     
                 </form>
                 <p></p>
-                <form action="" id="myForm2" method="get" style="display:none;">
+                <form action="" id="myForm2" method="get">
                     <div class="form-group">
                         <label for="binary">Binary code</label>
                         <input type="text" class="form-control" name="binary" id="binary" placeholder="Enter binary">
