@@ -1,4 +1,4 @@
-<img src="logo.png" alt="BinTree" style="width: 200px;"/>
+<img src="logo.png" alt="BinTree" style="width: 100px;"/>
 ## Build this project
 ### 1. Download and Istall NetBeans IDE
 Download [here](https://netbeans.org/)
