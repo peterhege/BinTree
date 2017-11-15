@@ -1,5 +1,5 @@
 # BinTree
-
+![BinTree](web/src/img/logo.png "BinTree")
 ## Build this project
 ### 1. Download and Istall NetBeans IDE
 Download [here](https://netbeans.org/)
