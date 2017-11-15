@@ -7,12 +7,12 @@ Download [here](https://netbeans.org/)
 For example in terminal:
 `git clone https://github.com/peterhege/BinTree.git`
 ### 3. Run NetBeans and Open project
-At the menu: File > Open Project... or Ctrl+Shift+O
+At the menu: File > Open Project... or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>
 And search the downloaded directory
 ### 4. Run the project
 - At the menu: Run > Run Project or <kbd>F6</kbd>
 - The project automatically open in your default browser.
-> But also go to the menu: Windows > Output or CTRL+4
+> But also go to the menu: Windows > Output or <kbd>CTRL</kbd>+<kbd>4</kbd>
 binfa(run) page and copy this line in your browser: `Browsing:`
 
 ## Useage
