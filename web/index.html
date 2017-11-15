@@ -52,10 +52,28 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <div class="container col-sm-6" style="text-align:center;">
+        <div class="container col-sm-6">
                 <p></p>
-                <img style="width:100px" src="src/img/justmanlogo.png" />
-                <h1>BinTree</h1>
+                
+                <h1 style="text-align:center;">
+                    <img style="width:100px" src="src/img/justmanlogo.png" /><br>
+                    BinTree
+                </h1>
+                <form id="myForm">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="radioName" id="exampleRadios1" value="1" checked>
+                            Upload a file
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="radioName" id="exampleRadios2" value="2">
+                            Write a bitstream
+                        </label>
+                    </div>
+                </form>
+                
                 <form action="" id="myForm1" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="file">File input</label>
@@ -65,7 +83,7 @@ and open the template in the editor.
                     
                 </form>
                 <p></p>
-                <form action="" id="myForm2" method="get">
+                <form action="" id="myForm2" method="get" style="display:none;">
                     <div class="form-group">
                         <label for="binary">Binary code</label>
                         <input type="text" class="form-control" name="binary" id="binary" placeholder="Enter binary">
@@ -79,6 +97,18 @@ and open the template in the editor.
         </div>
         
         <script>
+            $('#myForm input').on('change', function() {
+                var selectedForm = $('input[name=radioName]:checked', '#myForm').val();
+                if(selectedForm == '1'){
+                    $('#myForm1').css("display","block");
+                    $('#myForm2').css("display","none");
+                }
+                else{
+                    $('#myForm2').css("display","block");
+                    $('#myForm1').css("display","none");
+                }
+            });
+            
                 $("#myForm1").submit(function(e){
                     var formData = new FormData($("#myForm1")[0]);
                     $.ajax({
