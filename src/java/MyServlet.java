@@ -48,10 +48,10 @@ public class MyServlet extends HttpServlet {
         out.println("<div class=\"container\">\n" +
 "  <h2>Details</h2>\n" +
 "  <ul class=\"list-group\" style=\"color:#444;text-align:left;\">");
-        out.println("<li class=\"list-group-item\">Mélység: "+tree.getMelyseg() + "</li>");
-        out.println("<li class=\"list-group-item\">Átlag: " + tree.getAtlag() + "</li>");
-        out.println("<li class=\"list-group-item\">Szórás: " + tree.getSzoras() + "</li>");
-        out.println("<li class=\"list-group-item\">Kliensek: " + kliensek + "</li>");
+        out.println("<li class=\"list-group-item\">Deep: "+tree.getMelyseg() + "</li>");
+        out.println("<li class=\"list-group-item\">Average: " + tree.getAtlag() + "</li>");
+        out.println("<li class=\"list-group-item\">Scatter: " + tree.getSzoras() + "</li>");
+        //out.println("<li class=\"list-group-item\">Kliensek: " + kliensek + "</li>");
         out.println("<li class=\"list-group-item\">DoGet: " + getek + ", DoPost: " + postok + "</li>");
         out.println("</ul>\n" +
 "</div>");
@@ -59,10 +59,10 @@ public class MyServlet extends HttpServlet {
     
     private void getPNG(BinTree tree, PrintWriter out) throws IOException {
         BufferedImage img = new BufferedImage(400,400,BufferedImage.TYPE_INT_ARGB);
-            String szoveg1 = "Szoras: " + tree.getSzoras();
-            String szoveg2 = "Atlag: " + tree.getAtlag();
-            String szoveg3 = "Melyseg: " + tree.getMelyseg();
-            String szoveg4 = "Kliensek: " + kliensek;
+            String szoveg1 = "Scatter : " + tree.getSzoras();
+            String szoveg2 = "Average: " + tree.getAtlag();
+            String szoveg3 = "Deep: " + tree.getMelyseg();
+            //String szoveg4 = "Kliensek: " + kliensek;
             String szoveg5 = "DoGet: " + getek + "      DoPost: " + postok;
             
             Graphics2D g2d = img.createGraphics();
@@ -76,7 +76,7 @@ public class MyServlet extends HttpServlet {
             g2d.drawString(szoveg1,fontSize,y - 300);
             g2d.drawString(szoveg2,fontSize,y - 250);
             g2d.drawString(szoveg3,fontSize,y - 200);
-            g2d.drawString(szoveg4,fontSize,y - 150);
+            //g2d.drawString(szoveg4,fontSize,y - 150);
             g2d.drawString(szoveg5,fontSize,y - 100);
             g2d.dispose();
             String path = getServletContext().getRealPath("/")+"/";
