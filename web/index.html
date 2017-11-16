@@ -18,6 +18,7 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <style>
+            
             #tree{
                 overflow:auto;
                 background: #222;
@@ -66,29 +67,40 @@ and open the template in the editor.
                 margin-top: 20px;
             }
             
-            #sessCount{
+            #user{
                 display: inline-block;
                 font-size: 12px;
                 font-weight: bold;
-                background-color: red;
-                width: 35px;
-                height: 35px;
-                line-height: 35px;
-                text-align: center;
                 position: absolute;
-                border-radius: 35px;
-                bottom: 30px;
-                right: 30px;
-                overflow: hidden;
+                bottom: 3em;
+                right: 2.5em;
+                color: white;
+            }
+            
+            #sessCount{
+                top: -0.7em;
+                right: -1.3em;
+                display: inline-block;
+                background-color: red;
+                min-width: 2em;
+                height: 2em;
+                line-height: 2em;
+                border-radius: 2em;
+                position: absolute;
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <div class="container col-sm-6">
+            <span class="glyphicon glyphicon-user"></span>
                 <div style="text-align:center;">
                     <div class="col-sm-5" style="margin: 0 auto;">
                         <img style="width: 100%" src="src/img/logo.png" />
-                        <p id="sessCount">na</p>
+                        <div id="user">
+                            <img style="width:2em;" src="src/img/user.png">
+                            <span id="sessCount">na</span>
+                        </div>
                     </div>
                 </div>
                 <form id="myForm">
@@ -130,12 +142,25 @@ and open the template in the editor.
         </div>
         
         <script>
-            $.ajax({url: "sesscount.jsp", success: function(result){
-                    if( result > 999 )
-                        $("#sessCount").html("999+");
-                    else
-                        $("#sessCount").html(result);
-            }});
+            $(document).ready(function(){
+                function getAjax() {
+                    $.ajax({url: "sesscount.jsp", success: function(result){
+                            if( result > 99 )
+                                $("#sessCount").html("99+");
+                            else
+                                $("#sessCount").html(result);
+                        }});
+                }
+                function recursive() {
+                    setTimeout(function(){
+                        getAjax();
+                        if (window.console) console.log("he");
+                        recursive();
+                    }, 1000);
+                }
+                getAjax();
+                recursive();
+            });
             
             $('#myForm input').on('change', function() {
                 var selectedForm = $('input[name=radioName]:checked', '#myForm').val();
@@ -162,13 +187,6 @@ and open the template in the editor.
                         }
                     });
                     
-                    $.ajax({url: "sesscount.jsp", success: function(result){
-                        if( result > 999 )
-                            $("#sessCount").html("999+");
-                        else
-                            $("#sessCount").html(result);
-                    }});
-                    
                     e.preventDefault();
                 });
                 
@@ -180,13 +198,6 @@ and open the template in the editor.
                             $("#div1").html(result);
                         }
                     });
-                    
-                    $.ajax({url: "sesscount.jsp", success: function(result){
-                        if( result > 999 )
-                            $("#sessCount").html("999+");
-                        else
-                            $("#sessCount").html(result);
-                    }});
         
                     e.preventDefault();
                 });
